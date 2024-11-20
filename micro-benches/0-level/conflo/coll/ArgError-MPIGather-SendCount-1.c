@@ -21,7 +21,7 @@ int main(int argc, char *argv[]) {
   } else {
     num_elemns = 1;
   }
-  MPI_Gather(&local_sum, num_elemns, MPI_INT, &global_sum, 1, MPI_INT, root, MPI_COMM_WORLD);
+  MPI_Gather(&local_sum, num_elemns, MPI_INT, global_sum, 1, MPI_INT, root, MPI_COMM_WORLD);
 
   MPI_Finalize();
 

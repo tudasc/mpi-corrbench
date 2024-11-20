@@ -18,7 +18,7 @@ int main(int argc, char *argv[]) {
   int *buffer = malloc(N * sizeof(int));
 
   MPI_Win win;
-  MPI_Win_create(&buffer, N * sizeof(int), 1, MPI_INFO_NULL, MPI_COMM_WORLD, &win);
+  MPI_Win_create(buffer, N * sizeof(int), 1, MPI_INFO_NULL, MPI_COMM_WORLD, &win);
 
   if (rank == 0) {
     MPI_Win_fence(0, win);
@@ -29,10 +29,10 @@ int main(int argc, char *argv[]) {
     } else {
       start_acc = 0;
     }
-    MPI_Put(&local_buf, N, MPI_INT, 1, start_acc, N, MPI_INT, win);
+    MPI_Put(local_buf, N, MPI_INT, 1, start_acc, N, MPI_INT, win);
     // acces start at position 5 so it will be out of the tgt win
 
-    MPI_Win_fence(MPI_MODE_NOPRECEDE, win);
+    MPI_Win_fence(0, win);
   } else {
     MPI_Win_fence(0, win);
     MPI_Win_fence(0, win);

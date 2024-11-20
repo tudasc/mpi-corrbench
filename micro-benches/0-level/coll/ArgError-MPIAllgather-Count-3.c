@@ -18,7 +18,7 @@ int main(int argc, char *argv[]) {
   MPI_Allgather(&local_sum, -1, MPI_INT, global_sum, 2, MPI_INT, MPI_COMM_WORLD);
 
   if (myRank == 0) {
-    printf("Result: %d", global_sum);
+    printf("Result: %d", global_sum[0]);
   }
 
   MPI_Finalize();

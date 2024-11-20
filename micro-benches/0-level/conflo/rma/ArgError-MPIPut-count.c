@@ -18,7 +18,7 @@ int main(int argc, char *argv[]) {
   int *buffer = malloc(N * N * sizeof(int));
 
   MPI_Win win;
-  MPI_Win_create(&buffer, N * N * sizeof(int), 1, MPI_INFO_NULL, MPI_COMM_WORLD, &win);
+  MPI_Win_create(buffer, N * N * sizeof(int), 1, MPI_INFO_NULL, MPI_COMM_WORLD, &win);
 
   if (rank == 0) {
     MPI_Win_fence(0, win);
@@ -29,7 +29,7 @@ int main(int argc, char *argv[]) {
     } else {
       buf_size = N;
     }
-    MPI_Put(&local_buf, buf_size, MPI_INT, 1, 0, N * N, MPI_INT, win);
+    MPI_Put(local_buf, buf_size, MPI_INT, 1, 0, N * N, MPI_INT, win);
 
     MPI_Win_fence(0, win);
   } else {

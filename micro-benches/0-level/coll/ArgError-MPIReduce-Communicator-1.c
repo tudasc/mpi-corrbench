@@ -15,7 +15,7 @@ int main(int argc, char *argv[]) {
   MPI_Comm_size(MPI_COMM_WORLD, &numProcs);
   MPI_Comm_rank(MPI_COMM_WORLD, &myRank);
 
-  MPI_Comm *comm = NULL;
+  MPI_Comm comm = NULL;
   MPI_Reduce(&local_sum, &global_sum, 1, MPI_INT, MPI_SUM, 0, comm);
 
   if (myRank == 0) {

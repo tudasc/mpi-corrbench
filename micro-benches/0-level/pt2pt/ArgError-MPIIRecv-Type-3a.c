@@ -6,7 +6,7 @@
 #define N 1000
 
 /*
- * Local and call data types do not match. line 25
+ * Send and recv type signatures do not match. line 25
  */
 
 int main(int argc, char *argv[]) {
@@ -22,7 +22,7 @@ int main(int argc, char *argv[]) {
   } else if (rank == 1) {
     MPI_Request req;
     MPI_Status stat;
-    MPI_Irecv(buffer, N, MPI_UNSIGNED, 0, MSG_TAG_A, MPI_COMM_WORLD, &req);
+    MPI_Irecv(buffer, N, MPI_INT, 0, MSG_TAG_A, MPI_COMM_WORLD, &req);
     MPI_Wait(&req, &stat);
   }
 

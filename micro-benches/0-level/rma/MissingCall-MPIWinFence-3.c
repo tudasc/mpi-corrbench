@@ -18,11 +18,11 @@ int main(int argc, char *argv[]) {
   int *buffer = malloc(N * sizeof(int));
 
   MPI_Win win;
-  MPI_Win_create(&buffer, N * sizeof(int), 1, MPI_INFO_NULL, MPI_COMM_WORLD, &win);
+  MPI_Win_create(buffer, N * sizeof(int), 1, MPI_INFO_NULL, MPI_COMM_WORLD, &win);
 
   if (rank == 0) {
     int local_buf[N] = {0};
-    MPI_Put(&local_buf, N, MPI_INT, 1, 0, N, MPI_INT, win);
+    MPI_Put(local_buf, N, MPI_INT, 1, 0, N, MPI_INT, win);
   } else {
   }
 

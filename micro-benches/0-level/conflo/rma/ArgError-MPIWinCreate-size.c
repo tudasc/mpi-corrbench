@@ -26,7 +26,7 @@ int main(int argc, char *argv[]) {
     size = N;
   }
 
-  MPI_Win_create(&buffer, size, 1, MPI_INFO_NULL, MPI_COMM_WORLD, &win);
+  MPI_Win_create(buffer, size, 1, MPI_INFO_NULL, MPI_COMM_WORLD, &win);
 
   MPI_Win_free(&win);
   MPI_Finalize();

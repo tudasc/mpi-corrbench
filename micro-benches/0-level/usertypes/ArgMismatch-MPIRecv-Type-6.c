@@ -37,6 +37,7 @@ int main(int argc, char *argv[]) {
   if (my_rank == 0) {
     MPI_Send(buf, 1, col_t, 1, MY_TAG, MPI_COMM_WORLD);
   } else if (my_rank == 1) {
+    MPI_Type_free(&col_t);
     MPI_Type_vector(16, 2, 16, MPI_FLOAT, &col_t);
     MPI_Type_commit(&col_t);
     MPI_Recv(buf, 1, col_t, 0, MY_TAG, MPI_COMM_WORLD, MPI_STATUS_IGNORE);

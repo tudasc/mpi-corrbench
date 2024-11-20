@@ -2,7 +2,7 @@
 #include <stddef.h>
 #include <stdio.h>
 /*
- * invalid buffer (buffer on temporary stack mem will be feed at function exit) (line 13)
+ * invalid buffer (buffer on temporary stack mem will be freed at function exit) (line 14)
  *
  */
 
@@ -11,7 +11,7 @@
 void get_win(MPI_Win *win) {
   int buffer[N];
 
-  MPI_Win_create(&buffer, N * sizeof(int), 1, MPI_INFO_NULL, MPI_COMM_WORLD, win);
+  MPI_Win_create(buffer, N * sizeof(int), 1, MPI_INFO_NULL, MPI_COMM_WORLD, win);
 
   return;
 }

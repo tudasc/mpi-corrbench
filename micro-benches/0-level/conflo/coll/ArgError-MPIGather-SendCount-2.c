@@ -22,7 +22,7 @@ int main(int argc, char *argv[]) {
     num_elems = 1;
   }
 
-  MPI_Gather(&local_sum, num_elems, MPI_INT, &global_sum, 1, MPI_INT, root, MPI_COMM_WORLD);
+  MPI_Gather(&local_sum, num_elems, MPI_INT, global_sum, 1, MPI_INT, root, MPI_COMM_WORLD);
 
   MPI_Finalize();
 

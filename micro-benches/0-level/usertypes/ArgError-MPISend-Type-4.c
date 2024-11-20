@@ -30,6 +30,7 @@ int main(int argc, char *argv[]) {
     MPI_Recv(buf, 1, two_ints, 0, MY_TAG, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
   }
 
+  MPI_Type_free(&two_ints);
   MPI_Finalize();
 
   free(buf);

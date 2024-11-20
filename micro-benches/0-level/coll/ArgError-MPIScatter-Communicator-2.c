@@ -15,7 +15,7 @@ int main(int argc, char *argv[]) {
   int root = 0;
 
   MPI_Comm comm = NULL;
-  MPI_Scatter(&local_sum, 1, MPI_DOUBLE, &global_sum, 1, MPI_INT, root, comm);
+  MPI_Scatter(local_sum, 1, MPI_DOUBLE, &global_sum, 1, MPI_INT, root, comm);
 
   MPI_Finalize();
 

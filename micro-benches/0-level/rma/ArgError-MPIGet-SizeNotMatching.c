@@ -18,14 +18,14 @@ int main(int argc, char *argv[]) {
   int *buffer = malloc(N * sizeof(int));
 
   MPI_Win win;
-  MPI_Win_create(&buffer, N * sizeof(int), 1, MPI_INFO_NULL, MPI_COMM_WORLD, &win);
+  MPI_Win_create(buffer, N * sizeof(int), 1, MPI_INFO_NULL, MPI_COMM_WORLD, &win);
 
   if (rank == 0) {
     MPI_Win_fence(0, win);
-    int local_buf[5] = {0};
-    MPI_Get(&local_buf, 5, MPI_INT, 1, 0, N, MPI_INT, win);
+    int local_buf[4] = {0};
+    MPI_Get(local_buf, 5, MPI_INT, 1, 0, N, MPI_INT, win);
 
-    MPI_Win_fence(MPI_MODE_NOPRECEDE, win);
+    MPI_Win_fence(0, win);
   } else {
     MPI_Win_fence(0, win);
     MPI_Win_fence(0, win);

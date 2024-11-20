@@ -21,7 +21,7 @@ int main(int argc, char *argv[]) {
   } else {
     num_elements = 2;
   }
-  MPI_Allgather(&local_sum, num_elements, MPI_INT, &global_sum, 1, MPI_INT, MPI_COMM_WORLD);
+  MPI_Allgather(&local_sum, num_elements, MPI_INT, global_sum, 1, MPI_INT, MPI_COMM_WORLD);
 
   if (myRank == 0) {
     printf("Result: %d %d\n", global_sum[0], global_sum[1]);

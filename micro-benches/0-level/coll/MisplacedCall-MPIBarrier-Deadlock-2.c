@@ -18,12 +18,12 @@ int main(int argc, char *argv[]) {
   MPI_Comm_rank(MPI_COMM_WORLD, &rank);
 
   if (rank == 0) {
-    MPI_Recv(&buffer, N, MPI_INT, 1, MSG_TAG_A, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+    MPI_Recv(buffer, N, MPI_INT, 1, MSG_TAG_A, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
     MPI_Barrier(MPI_COMM_WORLD);
-    MPI_Recv(&buffer2, N, MPI_INT, 1, MSG_TAG_B, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+    MPI_Recv(buffer2, N, MPI_INT, 1, MSG_TAG_B, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
   } else if (rank == 1) {
-    MPI_Send(&buffer, N, MPI_INT, 0, MSG_TAG_A, MPI_COMM_WORLD);
-    MPI_Send(&buffer2, N, MPI_INT, 0, MSG_TAG_B, MPI_COMM_WORLD);
+    MPI_Send(buffer, N, MPI_INT, 0, MSG_TAG_A, MPI_COMM_WORLD);
+    MPI_Send(buffer2, N, MPI_INT, 0, MSG_TAG_B, MPI_COMM_WORLD);
     MPI_Barrier(MPI_COMM_WORLD);
   }
 

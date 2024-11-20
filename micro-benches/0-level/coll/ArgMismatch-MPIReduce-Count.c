@@ -15,13 +15,13 @@ int main(int argc, char *argv[]) {
   MPI_Comm_rank(MPI_COMM_WORLD, &myRank);
 
   if (myRank == 0) {
-    MPI_Reduce(&local_sum, &global_sum, 1, MPI_INT, MPI_SUM, 0, MPI_COMM_WORLD);
+    MPI_Reduce(local_sum, global_sum, 1, MPI_INT, MPI_SUM, 0, MPI_COMM_WORLD);
   } else {
-    MPI_Reduce(&local_sum, &global_sum, 2, MPI_INT, MPI_SUM, 0, MPI_COMM_WORLD);
+    MPI_Reduce(local_sum, global_sum, 2, MPI_INT, MPI_SUM, 0, MPI_COMM_WORLD);
   }
 
   if (myRank == 0) {
-    printf("Result: %d", global_sum);
+    printf("Result: %d", global_sum[0]);
   }
 
   MPI_Finalize();

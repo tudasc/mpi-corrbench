@@ -7,7 +7,7 @@
 #include <unistd.h>
 
 /*
- * the user had to make shure only one collective initialization is active at a time per process and communicator
+ * the user had to make sure only one collective initialization is active at a time per process and communicator
  * according to the standard (see p303) If one reads the standard strictly, this is also forbidden with mixed
  * collectives
  */
@@ -30,18 +30,19 @@ int main(int argc, char *argv[]) {
   if (myRank == 0) {
 #pragma omp parallel num_threads(NUM_THREADS)
     {
-#pragma omp task
+#pragma omp single 
+    {
+#pragma omp task depend(inout: myRank)
       {
-#pragma omp critical
         MPI_Barrier(MPI_COMM_WORLD);
       }
-#pragma omp task
+#pragma omp task depend(inout: myRank)
       {
         int *buffer = malloc(BUFFER_LENGTH_BYTE);
-#pragma omp critical
         MPI_Bcast(buffer, BUFFER_LENGTH_INT, MPI_INT, 0, MPI_COMM_WORLD);
         free(buffer);
       }
+    }
     }  // end parallel
   }
 

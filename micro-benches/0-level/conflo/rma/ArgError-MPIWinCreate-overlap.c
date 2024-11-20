@@ -17,7 +17,7 @@ int main(int argc, char *argv[]) {
 
   MPI_Win win1, win2;
 
-  MPI_Win_create(&buffer, (N / 2) * sizeof(int), 1, MPI_INFO_NULL, MPI_COMM_WORLD, &win1);
+  MPI_Win_create(buffer, (N / 2) * sizeof(int), 1, MPI_INFO_NULL, MPI_COMM_WORLD, &win1);
 
   // overlapping window is forbidden (windows overlap as sizeof(int) > 1 )
   int stride = 1;

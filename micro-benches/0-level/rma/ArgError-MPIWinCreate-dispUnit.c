@@ -18,7 +18,7 @@ int main(int argc, char *argv[]) {
 
   MPI_Win win;
 
-  MPI_Win_create(&buffer, N, -1, MPI_INFO_NULL, MPI_COMM_WORLD, &win);
+  MPI_Win_create(buffer, N, -1, MPI_INFO_NULL, MPI_COMM_WORLD, &win);
 
   MPI_Win_free(&win);
 

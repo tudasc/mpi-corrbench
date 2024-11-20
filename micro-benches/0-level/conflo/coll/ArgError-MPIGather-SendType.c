@@ -21,7 +21,7 @@ int main(int argc, char *argv[]) {
     recv_t = MPI_INT;
   }
 
-  MPI_Gather(&local_sum, 1, recv_t, &global_sum, 1, MPI_INT, root, MPI_COMM_WORLD);
+  MPI_Gather(&local_sum, 1, recv_t, global_sum, 1, MPI_INT, root, MPI_COMM_WORLD);
 
   MPI_Finalize();
 
